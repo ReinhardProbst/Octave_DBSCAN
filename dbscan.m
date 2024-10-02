@@ -81,6 +81,10 @@ function clusterIds = dbscan_fct(points, eps, minPts)
 #    end
 end
 
+points = dlmread("./smile_face.csv", ";");
+eps = 2;
+minPts = 10;
+
 figure(++fig_no);
 plot(points(:,1), points(:,2), "kx", "markersize", 15);
 grid on;
