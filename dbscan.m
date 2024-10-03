@@ -28,11 +28,12 @@ function [clusterIds, visited] = expand_cluster(points, clusterIds, pointIdx, ne
             visited(currentP) = 1;
             result = region_query(points, points(currentP, :), eps);
             if length(result) >= minPts
+                #printf("Found core point with idx: %d x: %.2f y: %.2f\n", currentP, points(currentP,1), points(currentP,2));
                 seeds = [seeds; result];       # Add new neighbors to list
             end
         end
         if clusterIds(currentP) == -1
-            clusterIds(currentP) = clusterId;  % Set to cluster if not yet explored
+            clusterIds(currentP) = clusterId;  # Set to cluster if not yet explored
         end
         idx += 1;
     end
@@ -83,7 +84,7 @@ end
 
 points = dlmread("./smile_face.csv", ";");
 eps = 2;
-minPts = 10;
+minPts = 5;
 
 figure(++fig_no);
 plot(points(:,1), points(:,2), "kx", "markersize", 15);
