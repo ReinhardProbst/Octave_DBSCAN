@@ -2,6 +2,9 @@
 ## Originally based on ChatGPT code creation
 ##
 
+include_fn = "common.m";
+source(include_fn);   # Include custom functions
+
 # Sample points
 points = [ 1.0,  1.1;
            1.2,  1.3;
@@ -87,7 +90,13 @@ eps = 2;
 minPts = 5;
 
 figure(++fig_no);
-plot(points(:,1), points(:,2), "kx", "markersize", 15);
+hold on;
+plot(points(:,1), points(:,2), "k.", "markersize", 25);
+draw_circle(0, 2.8, 1.5);
+draw_circle(-2, 5, 1.5);
+draw_circle(2, 5, 1.5);
+draw_circle(0, 0, 4.5);
+hold off;
 grid on;
 title("Raw points");
 
@@ -103,7 +112,7 @@ for i = 0:max(clusterIds)
     display(pts);
 
     figure(++fig_no);
-    plot(pts(:,1), pts(:,2), "rx", "markersize", 15);
+    plot(pts(:,1), pts(:,2), "r.", "markersize", 25);
     grid on;
     title(strcat("Points of cluster:", num2str(i)));
 end
